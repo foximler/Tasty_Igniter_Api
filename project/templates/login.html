@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="column is-4 is-offset-4">
+    <div class="box">
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <div class="notification is-danger">
+        {{ messages[0] }}
+    </div>
+{% endif %}
+{% endwith %}
+  
+
+
+<div class="w3-card-4 w3-padding">
+  <div class="w3-container w3-black">
+    <h2>Log In</h2>
+  </div>
+  <form class="w3-container" method="POST" action="/login">
+    <p>      
+    <label class="w3-text-blue-grey"><b>Email</b></label>
+    <input class="w3-input w3-border w3-sand" type="email" name="email" placeholder="Your Email" autofocus=""></p>
+    <p>      
+    <label class="w3-text-blue-grey"><b>Password</b></label>
+    <input class="w3-input w3-border w3-sand" type="password" name="password" placeholder="Your Password"></p>
+    <p>
+    <button class="w3-btn w3-black">Login</button></p>
+  </form>
+</div>
+  
+
+{% endblock %}

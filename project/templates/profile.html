@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <hr>
+
+  <div class="w3-container">
+    <h5>Active Api Keys</h5>
+    <div class="w3-responsive">
+    <table class="w3-table-all w3-striped w3-bordered w3-border w3-hoverable w3-white">
+      <tr>
+        <td>Key Name <i class="fa fa-id-card"></i></td>
+        <td>Key ID<i class="fa fa-fingerprint"></i></td>
+        <td>Creator Email<i class="fa fa-mail"></i></td>
+        <td>Remove key<i class="fa fa-eraser"></i></td>
+      </tr>
+      {% for item in api_keys %}
+      <tr>
+    <td>{{item["name"]}}</td>
+    <td>{{item["api_key"]}}</td>
+    <td>{{item["email"]}}</td>
+    <td>
+      <form action="delete_api_key" method="post">
+        <button name="api_key" value={{item["api_key"]}}><i class="fa fa-times"></i></button>
+      </form>
+    </td>
+    </td>
+    {% endfor %}
+   
+    </table><br>
+  </div>
+</tr>
+</table>
+</div>
+</div>
+{% endblock %}
