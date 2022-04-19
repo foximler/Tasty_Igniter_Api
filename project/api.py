@@ -37,12 +37,12 @@ class orders:
 
 def generate_expoview(order_in):
     items_list = []
-    order_type = order_in[13]
+    order_type = order_in[12]
     if (order_type == "delivery" ):
         info  = get_order_address(order_in[7])
-        order_city = info.city
-        order_address = info.address
-        order_state = info.state
+        order_city = info['city']
+        order_address = info['address']
+        order_state = info['state']
     else:
         order_city = ""
         order_address = ""
@@ -73,11 +73,12 @@ def generate_expoview(order_in):
             items_list.append(item)
             i += 1
     Holla_back = orders(order_in[0],order_in[18],order_in[30],order_name,order_in[4],order_in[5],order_in[9],order_in[10],d.strftime('%I:%M %p'),order_price,items_list,order_type,order_city,order_address,order_state)
+    print(Holla_back)
     return Holla_back
 
 def get_active_orders():
     mydb = mysql.connector.connect(
-          host="",
+           host="",
           user="",
           password="",
           database=""
@@ -95,7 +96,7 @@ def get_active_orders():
 
 def get_order_address(address):
     mydb = mysql.connector.connect(
-          host="",
+           host="",
           user="",
           password="",
           database=""
@@ -105,16 +106,16 @@ def get_order_address(address):
     mycursor.execute(f"SELECT * FROM ti_addresses WHERE address_id = {int(address)}")
     myresult = mycursor.fetchall()
     location = {
-    address: myresult[2]+' - '+myresult[3],
-    city: myresult[4],
-    state: myresult[5]
+    'address': f"{myresult[0][2]} - {myresult[0][3]}",
+    'city': f"{myresult[0][4]}",
+    'state': f"{myresult[0][5]}",
     }
     return location
 
 
 def update_order_status(order_id,order_status):
     mydb = mysql.connector.connect(
-          host="",
+           host="",
           user="",
           password="",
           database=""
@@ -125,7 +126,7 @@ def update_order_status(order_id,order_status):
     mydb.commit()
 def update_print_status(order_id, print_status):
     mydb = mysql.connector.connect(
-          host="",
+           host="",
           user="",
           password="",
           database=""
