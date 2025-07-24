@@ -57,9 +57,10 @@ def generate_expoview(order_in):
         item["Item_name"] = items[1]._asdict()[b'name'].decode('utf-8')
         item["Item_price"] = items[1]._asdict()[b'price']
         item_mods = items[1]._asdict()[b'options']._asdict()[b'\x00*\x00items'].items()
+        if items[1]._asdict()[b'comment'] is not None:
+            item["Item_comments"] = items[1]._asdict()[b'comment'].decode('utf-8')
         mods = []
         if bool(item_mods):
-            item["Item_comments"] = items[1]._asdict()[b'comment'].decode('utf-8')
             for mod in item_mods:
                 mods_list = mod[1]._asdict()[b'values']._asdict()[b'\x00*\x00items'].items()
                 for z in mods_list:
